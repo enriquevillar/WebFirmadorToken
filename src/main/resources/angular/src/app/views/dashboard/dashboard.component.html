@@ -1,0 +1,76 @@
+<c-card>
+  <c-card-header>
+   Documentos para Firma Electronica
+  </c-card-header>
+  <c-card-body>
+    <table  [striped]="true" cTable>
+      <thead cTableColor="light">
+      <tr>
+        <th>ID</th>
+        <th>Nombre Archivio</th>
+        <th>Descripcion</th>
+        <th>Caratula</th>
+        <th>Fecha Estado</th>
+        <th>Firmar</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor ="let documento of documentos">
+        <td>
+           {{documento.id}}</td>
+        <td>{{documento.nombreDocumento}}</td>
+        <td>{{documento.descripcionDocumento}}</td>
+        <td>{{documento.caratula}}</td>
+        <td>{{documento.fechaEstado}}</td>
+        <td>
+
+          <button cButton color="primary"  size="xs" variant="ghost"  (click)="openModal(documento.codigoVerificacion)">
+
+            <svg cIcon name="cilPageview" size="xs" title="Numbered List Icon"></svg> Ver</button>
+          <button cButton color="primary"  size="xs" variant="ghost"  (click)="firmar(documento.codigoVerificacion,documento.id)">
+            <svg cIcon name="cilPencil" size="xs" title="Numbered List Icon"></svg>
+            firmar
+            </button></td>
+      </tr>
+      </tbody>
+      <c-card-footer>
+        <button cButton color="primary" shape="rounded-pill" [disabled]="documentos==null || documentos.length==0" (click)="firmarTodo()">firmar todo</button>
+      </c-card-footer>
+    </table>
+
+  </c-card-body>
+</c-card>
+<c-modal id="liveDemoModal" [visible]="visible"  [scrollable]="true"
+         alignment="center" size="xl" (visibleChange)="handleLiveDemoChange($event)">
+  <c-modal-header>
+    <h5 cModalTitle>Documento Electronico</h5>
+    <button (click)="toggleLiveDemo()" cButtonClose></button>
+  </c-modal-header>
+  <c-modal-body>
+    <pdf-viewer [src]="fileURL"
+                [render-text]="true"
+                [original-size]="false"
+                [zoom-scale]="'page-width'"
+                style="width: 100%; height: 800px;"
+        ></pdf-viewer>
+  </c-modal-body>
+  <c-modal-footer>
+    <button (click)="toggleLiveDemo()" cButton color="secondary">
+      Close
+    </button>
+    <button cButton color="primary">Save changes</button>
+  </c-modal-footer>
+</c-modal>
+
+<c-modal id="liveDemoModal2" [visible]="cargando" (visibleChange)="handleLiveDemoChange2($event)">
+  <c-modal-header>
+    <h5 cModalTitle>Cargando</h5>
+  </c-modal-header>
+  <c-modal-body>
+    <c-spinner color="success">Cargando..</c-spinner>
+    </c-modal-body>
+  <c-modal-footer>
+
+  </c-modal-footer>
+</c-modal>
+

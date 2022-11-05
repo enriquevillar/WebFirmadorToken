@@ -1,0 +1,10 @@
+<!-- dialog-box.component.html -->
+<h1 mat-dialog-title>Error <strong>{{action}}</strong></h1>
+<div mat-dialog-content>
+
+  <h2>{{local_data.name}}</h2>
+
+</div>
+<div mat-dialog-actions>
+  <button mat-button (click)="closeDialog()" mat-flat-button color="warn">Entendido</button>
+</div>

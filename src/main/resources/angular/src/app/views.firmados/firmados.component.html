@@ -1,0 +1,53 @@
+<form cForm  [formGroup]="form" (ngSubmit)="buscar(form)">
+<c-card>
+   <c-card-header>
+    Busqueda de Documentos Firmados
+  </c-card-header>
+  <c-card-body>
+      <c-container>
+        <c-row>
+      <c-col [sm]="2">
+        <label cLabel for="caratula">
+          Caratula
+        </label>
+        <input cFormControl id="caratula" placeholder="Caratula" formControlName="caratula" />
+      </c-col>
+      <c-col [sm]="3">
+        <label cLabel  for="tipoDocumento">
+          Tipo Documento
+        </label>
+        <c-input-group>
+              <input cFormControl id="tipoDocumento" placeholder="tipo documento" formControlName="tipoDocumento" />
+        </c-input-group>
+      </c-col>
+      <c-col [sm]="2">
+        <label cLabel  for="fechaFirma">
+          Fecha Desde
+        </label>
+             <input cFormControl type="date" id="fechaFirma" size="10" placeholder="Fecha Desde" formControlName="fechaDesde"/>
+      </c-col>
+      <c-col [sm]="2">
+        <label cLabel  for="fechaHasta">
+          Fecha Hasta
+        </label>
+        <input cFormControl type="date" id="fechaHasta" size="10" placeholder="Fecha Hasta" formControlName="fechaHasta"/>
+      </c-col>
+        </c-row>
+      </c-container>
+  </c-card-body>
+    <c-card-footer class="text-lg-center">
+      <button cButton type="submit">Buscar</button>
+    </c-card-footer>
+ </c-card>
+</form>
+<c-modal id="liveDemoModal2" [visible]="cargando" (visibleChange)="handleLiveDemoChange2($event)">
+  <c-modal-header>
+    <h5 cModalTitle>Cargando</h5>
+  </c-modal-header>
+  <c-modal-body>
+    <c-spinner color="success">Cargando..</c-spinner>
+  </c-modal-body>
+  <c-modal-footer>
+
+  </c-modal-footer>
+</c-modal>
